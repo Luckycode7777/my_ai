@@ -1,18 +1,16 @@
+from collections import Counter
+
 with open('text.txt', 'r', encoding='utf-8') as file:
-		content = file.read().lower()
-# print(content)
-print("Файл закрыт")
+		content = file.read().lower()   # приводим к нижнему регистру
 
-key_counter = {}
+# Фильтруем: оставляем только буквы и цифры
+filtered_text = ' '.join(char for char in content if char.isalnum())
 
-for i in content:
-		if i in key_counter:
-				key_counter[i] += 1
-		else:
-				key_counter[i] = 1
+# Считаем частоту
+char_frequency = Counter(filtered_text)
 
-print(f"{key_counter}")
-print("-------------------")
+# Выводим топ-10
+print("ТОП-10 букв и цифр (регистр не учитывается):")
 
-for i, count in sorted(key_counter.items()):
-		print(f"'{i}': {count}")
+for i, (char, count) in enumerate(char_frequency.most_common(10), 1):
+		print(f"'{char}' : {count}")
