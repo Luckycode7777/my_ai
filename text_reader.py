@@ -1,8 +1,5 @@
-from collections import Counter
-
 with open('text.txt', 'r', encoding='utf-8') as file:
     content = file.read().lower()  # приводим к нижнему регистру
-    print(type(content))
 
 """1 Фильтруем: оставляем только буквы и цифры учитывая пробел"""
 filtered_text = list(' '.join(char for char in content if char.isalnum()))
@@ -27,10 +24,9 @@ for i in filtered_text:
         dic_all_simb[i] += 1
     else:
         dic_all_simb[i] = 1
-print(dic_all_simb)
 
-print("*" * 10)
-z = sorted(dic_all_simb)
-print(z)
+sorted_by_values_asc = sorted(dic_all_simb.items(), key=lambda x: x[1], reverse=True)
 
-
+"""3. топ-10"""
+for k, v in sorted_by_values_asc[:10]:
+    print(f"'{k}' : {v}")
