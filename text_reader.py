@@ -1,35 +1,36 @@
 from collections import Counter
 
 with open('text.txt', 'r', encoding='utf-8') as file:
-		content = file.read().lower()  # приводим к нижнему регистру
+    content = file.read().lower()  # приводим к нижнему регистру
+    print(type(content))
+
+"""1 Фильтруем: оставляем только буквы и цифры учитывая пробел"""
+filtered_text = list(' '.join(char for char in content if char.isalnum()))
+filtered_text_1 = ' '.join(char for char in content if char.isalnum())
+
+"""2. - общее число символов"""
+lst_simb = []
+all_simbols = [lst_simb.append(i) for i in content]
+print(len(all_simbols))
+
+"""2. - число уникальных символов"""
+lst_unic_simb = []
+unic_simb = [lst_unic_simb.append(i) for i in filtered_text if i not in lst_unic_simb]
+print(len(unic_simb))
+
+"""3. Отсортируй вывод по убыванию частоты вручную, без most_common()"""
+dic_all_simb = {}
 
 
-# Фильтруем: оставляем только буквы и цифры
-filtered_text = ' '.join(char for char in content if char.isalnum())
+for i in filtered_text:
+    if i in dic_all_simb:
+        dic_all_simb[i] += 1
+    else:
+        dic_all_simb[i] = 1
+print(dic_all_simb)
 
-
-
-counter_all_simbols = 0
-counter_unic_simbols = 0
-simb = []
-x = []
-z = [x.append(i) for i in filtered_text if i not in x]
-# char_frequency = Counter(filtered_text) # список уникальных символов
-
-
-# общее число символов
-v = [simb.append(i) for i in content]
-print(len(v))
-
-
-# общее количество символов
-print(f'Всего символов: {counter_all_simbols}')
-print(f'Число уникальных символов: {len(x)}')
-
-# 3.Отсортируй вывод по убыванию частоты вручную, без most_common()
-count_chastoti = Counter(filtered_text)
-# count_chastoti = list(count_chastoti)
-print(count_chastoti)
-
+print("*" * 10)
+z = sorted(dic_all_simb)
+print(z)
 
 
