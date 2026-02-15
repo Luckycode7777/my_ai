@@ -19,22 +19,39 @@ filtered_text = ''.join(
     i for i in content if i.isalnum() or i == ' '
 )
 
-"""1. Получаем список уникальныйх символов"""
+"""1. Получаем список уникальных символов"""
 unic_simb = sorted(set(filtered_text))
-# print(unic_simb)
+print("1. Получаем список уникальных символов")
+print(unic_simb)
+print("***" * 7)
 
-"""2. Создаем словарь"""
+
+"""2. Создаем словарь string-to-index"""
 char_index = {v: i for i, v in enumerate(unic_simb)}
-# print(char_index)
+print("2. Создаем словарь string-to-index")
+print(char_index)
+print("***" * 7)
 
-"""3. Создаем обратный словарь"""
+
+"""3. Создаем обратный словарь index-to-strin"""
 index_char = {i: v for i, v in enumerate(unic_simb)}
-# print(index_char)
+print("3. Создаем обратный словарь index-to-strin")
+print(index_char)
+print("***" * 7)
+
 
 """4. перевести весь текст в список чисел"""
-encoded_text = []
 
-for i in filtered_text:
-    if i in char_index:
-        encoded_text.append(char_index[i])
+# Кодирование через цикл
+# encoded_text = []
+
+# for i in filtered_text:
+#     if i in char_index:
+#         encoded_text.append(char_index[i])
+
+# альтернативный вариант кодировки, более короткий
+encoded_text = [char_index[i] for i in filtered_text]
+
+print("4. перевести весь текст в список чисел используя словарь index-to-strin ")
 print(encoded_text[:50])
+print("***" * 7)
