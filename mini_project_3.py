@@ -57,14 +57,14 @@ encoded_text = [char_index[i] for i in filtered_text]
 # print(len(encoded_text))
 
 # Вывести первые 10 элементов encoded_text в X
-x = encoded_text[:-1]
+x = encoded_text[:-1]  # Срез элементов списка, все элементы кроме последнего
 
 # Вывести первые 10 элементов encoded_text в Y
-y = encoded_text[1:]
+y = encoded_text[1:]  # Срез элементов списка, начиная со второго элемента
+
 
 print(x[:10])
 print(y[:10])
-
 
 
 # ОТДЕЛЬНЫЙ ВЫВОД.
