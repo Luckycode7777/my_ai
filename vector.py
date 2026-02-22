@@ -81,4 +81,3 @@ with torch.no_grad():
 
 decoded = ''.join(index_char[i.item()] for i in generated)
 print(decoded)
-
