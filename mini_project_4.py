@@ -66,8 +66,30 @@ class BigramModel(nn.Module):
         loss = None
         if targets is not None:
             loss = F.cross_entropy(logits, targets)
-
         return logits, loss
+
+    def generate(self, start_idx, max_new_tokens):
+        idx = torch.tensor([start_idx], dtype=torch.long)
+
+        for _ in range(max_new_tokens):
+            logits, _ = self(idx)
+            logits = logits[-1]
+            probs = torch.softmax(logits, dim=0)
+            next_idx = torch.multinomial(probs, num_samples=1)
+            idx = torch.cat((idx, next_idx))
+
+        return idx
+
+
+#  следующий Шаг 4 — Генерация текста
+
+    # Использование
+    # После обучения добавляем:
+
+        start_symbol = 0
+        generated = model.generate(start_symbol, 100)
+        decoded = ''.join(index_char[i.item()] for i in generated)
+        print(decoded)
 
 
 vocab_size = len(unic_simb)
@@ -84,3 +106,29 @@ for step in range(1000):
 
     if step % 100 == 0:
         print(f"step {step}, loss {loss.item()}")
+
+#  следующий Шаг 4 — Генерация текста
+
+    # Использование
+    # После обучения добавляем:
+
+start_symbol = 200
+generated = model.generate(start_symbol, 100)
+decoded = ''.join(index_char[i.item()] for i in generated)
+print(decoded)
+
+
+# start_symbol = 0  # можно попробовать разные
+# generated = model.generate(start_symbol, 100)
+#
+# decoded = ''.join(index_char[i.item()] for i in generated)
+# print(decoded)
+#
+# # Использование
+# # После обучения добавляем:
+#
+# start_symbol = 200  # можно попробовать разные
+# generated = model.generate(start_symbol, 100)
+#
+# decoded = ''.join(index_char[i.item()] for i in generated)
+# print(decoded)
