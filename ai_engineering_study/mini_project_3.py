@@ -10,7 +10,7 @@
 # 3. Проверить, что Y — это X, сдвинутый на 1
 
 """Читаем текст из файла"""
-with open('text.txt', 'r', encoding='utf-8') as file:
+with open('../text.txt', 'r', encoding='utf-8') as file:
     content = file.read().lower()
 
 """Фильтруем текст. Оставляем только буквы, цифры и пробелы"""

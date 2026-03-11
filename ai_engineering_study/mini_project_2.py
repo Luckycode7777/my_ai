@@ -11,7 +11,7 @@
 # 4. Превратить весь текст в список чисел
 
 """Читаем текст из файла"""
-with open('text.txt', 'r', encoding='utf-8') as file:
+with open('../text.txt', 'r', encoding='utf-8') as file:
     content = file.read().lower()
 
 """Фильтруем текст. Оставляем только буквы, цифры и пробелы"""

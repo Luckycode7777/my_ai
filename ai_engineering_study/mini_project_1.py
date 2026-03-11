@@ -1,4 +1,4 @@
-with open('text.txt', 'r', encoding='utf-8') as file:
+with open('../text.txt', 'r', encoding='utf-8') as file:
     content = file.read().lower()  # приводим к нижнему регистру
 
 """1 Фильтруем: оставляем только буквы и цифры учитывая пробел"""
